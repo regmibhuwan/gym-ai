@@ -76,3 +76,4 @@ streamlit run app.py
 
 The frontend communicates with the FastAPI backend via REST API calls.
 All user data is stored in the backend database with automatic user ID generation.
+

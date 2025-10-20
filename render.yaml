@@ -5,7 +5,7 @@ services:
     plan: free
     pythonVersion: 3.11.9
     buildCommand: pip install -r requirements.txt
-    startCommand: python start_backend.py
+    startCommand: python -c "import sys; sys.path.insert(0, 'backend'); import uvicorn; uvicorn.run('main:app', host='0.0.0.0', port=int('$PORT'))"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -13,8 +13,6 @@ services:
           property: connectionString
       - key: OPENAI_API_KEY
         sync: false
-      - key: PORT
-        value: 8000
 
   - type: web
     name: gymai-frontend
@@ -22,12 +20,10 @@ services:
     plan: free
     pythonVersion: 3.11.9
     buildCommand: pip install -r requirements.txt
-    startCommand: python start_frontend.py
+    startCommand: python -c "import sys; sys.path.insert(0, 'frontend'); import subprocess; import os; subprocess.run([sys.executable, '-m', 'streamlit', 'run', 'frontend/app.py', '--server.port', os.environ.get('PORT', '8501'), '--server.address', '0.0.0.0', '--server.headless', 'true'])"
     envVars:
       - key: API_BASE_URL
         value: https://gymai-backend.onrender.com
-      - key: PORT
-        value: 8501
 
 databases:
   - name: gymai-db

@@ -68,3 +68,4 @@ python main.py
 
 The application uses SQLite for local development if no DATABASE_URL is provided.
 For production, use PostgreSQL with proper connection pooling.
+

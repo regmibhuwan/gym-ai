@@ -296,3 +296,4 @@ This will test all endpoints and verify the complete workflow.
 ---
 
 **Built with ❤️ for the fitness community**
+

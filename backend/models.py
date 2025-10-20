@@ -43,3 +43,4 @@ class Set(Base):
     
     # Relationships
     exercise = relationship("Exercise", back_populates="sets")
+
